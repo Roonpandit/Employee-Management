@@ -9,10 +9,13 @@ const generateToken = (id) => {
   });
 };
 
-// Send token response
+// Send token response with redirect path
 const sendTokenResponse = (user, statusCode, res) => {
   // Create token
   const token = generateToken(user._id);
+
+  // Determine redirect path based on role
+  const redirectPath = user.role === 'admin' ? '/admin' : '/user';
 
   // Remove password from output
   user.password = undefined;
@@ -20,7 +23,8 @@ const sendTokenResponse = (user, statusCode, res) => {
   res.status(statusCode).json({
     success: true,
     token,
-    user
+    user,
+    redirectPath
   });
 };
 
@@ -106,9 +110,14 @@ exports.login = async (req, res) => {
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
+    
+    // Include redirect path with user data
+    const redirectPath = user.role === 'admin' ? '/admin' : '/user';
+    
     res.status(200).json({
       success: true,
-      data: user
+      data: user,
+      redirectPath
     });
   } catch (error) {
     res.status(500).json({
