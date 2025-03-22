@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Invalid credentials",
+        message: "Invalid email",
       });
     }
 
@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: "Invalid credentials",
+        message: "Invalid Password",
       });
     }
 
@@ -102,6 +102,31 @@ exports.getMe = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Error fetching user profile",
+      error: error.message,
+    });
+  }
+};
+
+
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching user",
       error: error.message,
     });
   }
