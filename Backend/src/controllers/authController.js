@@ -25,7 +25,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -39,6 +39,7 @@ exports.register = async (req, res) => {
       name,
       email,
       password,
+      role,
     });
 
     sendTokenResponse(user, 201, res);
