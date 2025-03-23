@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">Library</div>
+      <div className="navbar-logo">HRHive</div>
 
       <div
         className={`hamburger ${isMenuOpen ? "active" : ""}`}
