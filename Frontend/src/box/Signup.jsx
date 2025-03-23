@@ -30,6 +30,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
+      console.log(import.meta.env.VITE_SIGNUP_ENDPOINT);
       await axios.post(import.meta.env.VITE_SIGNUP_ENDPOINT, user);
       alert("Signup successful! Please log in.");
       navigate("/");
