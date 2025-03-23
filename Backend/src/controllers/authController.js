@@ -18,6 +18,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     success: true,
     token,
     user,
+    userId:user._id,
     redirectPath,
   });
 };
