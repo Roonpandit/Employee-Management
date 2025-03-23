@@ -145,7 +145,7 @@ This Employee Management System allows organizations to manage employee data wit
 
 ## Contributors
 
-- [Your Name](https://github.com/yourusername)
+- [Tarun Vashisth](https://github.com/roonpandit)
 
 ## License
 
