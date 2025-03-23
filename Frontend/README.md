@@ -1,4 +1,4 @@
-# Employee Management System
+# HRHive: Employee Management System
 
 A full-stack employee management application with role-based permissions and authentication.
 
